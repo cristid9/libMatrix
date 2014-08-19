@@ -1,6 +1,8 @@
 #ifndef MATRICI_H
 #define MATRICI_H
 
+#include <stdbool.h>
+
 struct Matrix {
 	int lines;
 	int columns;
