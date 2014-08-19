@@ -5,9 +5,9 @@
 #include "error.h"
 #include "helpers.h"
 
-struct Matrix *create_matrix(int lines, int columns) 
+Matrix *create_matrix(int lines, int columns) 
 {
-	struct Matrix *a = malloc(sizeof(struct Matrix));
+	Matrix *a = malloc(sizeof(struct Matrix));
 	if(a == NULL) {
 		return NULL;
 	}
@@ -35,7 +35,7 @@ struct Matrix *create_matrix(int lines, int columns)
 	return a;
 }
 
-void destroy_matrix(struct Matrix *a) 
+void destroy_matrix(Matrix *a) 
 {
 	int lines = a->lines;
 
@@ -50,7 +50,7 @@ void destroy_matrix(struct Matrix *a)
 	}
 }
 
-void copy_matrix(struct Matrix *a, struct Matrix **destination) 
+void copy_matrix(Matrix *a, struct Matrix **destination) 
 {
 	for(int i = 0; i < a->lines; i++) {
 		for(int j = 0; j < a->columns; j++) {
@@ -59,7 +59,7 @@ void copy_matrix(struct Matrix *a, struct Matrix **destination)
 	}
 }
 
-void read_matrix(struct Matrix *a) 
+void read_matrix(Matrix *a) 
 {
 	int lines    = a->lines;
 	int columns = a->columns;
@@ -72,7 +72,7 @@ void read_matrix(struct Matrix *a)
 	}
 }
 
-int print_matrix(struct Matrix *a)
+int print_matrix(Matrix *a)
 {
 	if(a == NULL) {
 		return MATRIX_NOT_EXISTS;
@@ -91,7 +91,7 @@ int print_matrix(struct Matrix *a)
 	return NO_ERROR;
 }
 
-bool compare_matrices(struct Matrix *a, struct Matrix *b)
+bool compare_matrices(Matrix *a, struct Matrix *b)
 {
 	// To be equal 2 matrices shouls have the same dimensions
 	if(a->lines != b->lines)
