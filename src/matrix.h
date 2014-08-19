@@ -3,6 +3,19 @@
 
 #include <stdbool.h>
 
+/**
+ * @struct Matrix 
+ * 
+ * @brief The basic data structure used by this library to represent a matrix.
+ *
+ * @var Matrix::line The number of lines of a matrix.
+ * @var Matrix::columns The number of columns of a matrix.
+ * @var Matrix::determinant The determinant of a matrix.
+ * @var Matrix::trace The trace of a matrix.
+ * @var Matrix::value Pointer to a dynamically alocated 2 dimensional array.
+ * @var Matrix::inverse Pointer to a struct Matrix which represents the inverse
+ *      of the current matrix.
+ */
 struct Matrix {
 	int lines;
 	int columns;
