@@ -107,6 +107,14 @@ void destroy_matrix(struct Matrix *a);
  *         be returned, otherwise NO_ERROR.
  */
 int compute_inverse(struct Matrix *a);
+
+/**
+ * @brief Returns the determinant of a matrix.
+ *
+ * @param a The matrix whose determinant will be computed.
+ *
+ * @return double The determinant of matrix `a`.
+ */
 double get_determinant(struct Matrix *a);
 int multiply_matrices(struct Matrix *a, struct Matrix *b, 
 					  struct Matrix **result);
