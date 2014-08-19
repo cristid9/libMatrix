@@ -116,6 +116,20 @@ int compute_inverse(struct Matrix *a);
  * @return double The determinant of matrix `a`.
  */
 double get_determinant(struct Matrix *a);
+
+/**
+ * @brief Multiplies the matrices `a` and `b` and stores their results in the
+ *        matrix `result`. Note that the function will alocate memory for the
+ *        matrix `result`.
+ *
+ * @param a The matrix who will be multiplied with matrix `b`.
+ * @param b The matrix wo will be multiplied with matrix `a`.
+ *
+ * @return int SIZE_NOT_MATCH if matrix `a` doesn't have the same number of 
+ *         lines as the matrix `b`, CANT_CREATE_MATRIX if the function can't
+ *         allocate memory for the matrix `result` and NO_ERROR if the matrices
+ *         successully multiplied.
+ */
 int multiply_matrices(struct Matrix *a, struct Matrix *b, 
 					  struct Matrix **result);
 
