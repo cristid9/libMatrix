@@ -133,7 +133,7 @@ double get_determinant(struct Matrix *a);
 int multiply_matrices(struct Matrix *a, struct Matrix *b, 
 					  struct Matrix **result);
 
-bool isEqual(double a, double b);
+
 
 /**
  * @brief Use this function to add 2 matrices. Note that the result will
