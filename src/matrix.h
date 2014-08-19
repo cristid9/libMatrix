@@ -14,9 +14,37 @@ struct Matrix {
 	struct Matrix *inverse;
 };
 
+/**
+ * @brief Returns a pointer to a struct Matrix with `rows` rows and `columns`
+ *        columns. Note that the new matrix is empty, but it's elemnts are, by
+ *        default 0.
+ *
+ * @param rows The number of rows of the matrix.
+ * @param columns The number of columns of the matrix.
+ *
+ * @return struct Matrix A pointer to an empty struct Matrix.
+ */
 struct Matrix *create_matrix(int rows, int columns);
+
+/**
+ * @brief Utility function used to read a matrix from the standard input.
+ *
+ * @param a The matrix in which the readed elements will be stored.
+ *
+ * @retrun void It doesn't return anything.
+ */
 void read_matrix(struct Matrix *a);
+
+/**
+ * @brief utility function used to print a matrix to the standar output.
+ *
+ * @param a The matrix that should be printed.
+ *
+ * @return int If the matrix doesn't exists it will return MATRIX_NOT_EXISTS
+ *         and NO_ERROR if the matrix was successfully printed.
+ */
 int print_matrix(struct Matrix *a);
+
 struct Matrix *get_minor(struct Matrix *a, int line, int column);
 void multiply_matrix_with_scalar(struct Matrix *a, double scalar); 
 int get_transpose(struct Matrix *a, struct Matrix **transpose);
@@ -27,6 +55,7 @@ int multiply_matrices(struct Matrix *a, struct Matrix *b,
 					  struct Matrix **result);
 
 bool isEqual(double a, double b);
+
 /**
  * @brief Use this function to add 2 matrices. Note that the result will
  *        be stored in a third matrix.
