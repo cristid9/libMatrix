@@ -4,9 +4,9 @@
 #include "matrix.h"
 #include "error.h"
 
-struct Matrix *get_minor(struct Matrix *a, int line, int columns)
+Matrix *get_minor(Matrix *a, int line, int columns)
 {
-	struct Matrix *minor = create_matrix(a->lines - 1, a->columns - 1);
+	Matrix *minor = create_matrix(a->lines - 1, a->columns - 1);
 	if(minor == NULL) {
 		return NULL;
 	}
@@ -28,10 +28,10 @@ struct Matrix *get_minor(struct Matrix *a, int line, int columns)
 	return minor;
 }
 
-double get_determinant(struct Matrix *a)                                        
+double get_determinant(Matrix *a)                                        
 {                                                                              
 	double det;
-	struct Matrix *m;
+	Matrix *m;
 
 	if (a->lines == 1 && a->columns == 1) {                                     
 		return a->value[0][0];              
@@ -48,7 +48,7 @@ double get_determinant(struct Matrix *a)
 }
 
 
-int get_transpose(struct Matrix *a, struct Matrix **transpose) 
+int get_transpose(Matrix *a, Matrix **transpose) 
 {
 	*transpose = create_matrix(a->lines, a->columns);
 	if(*transpose == NULL) {
@@ -65,7 +65,7 @@ int get_transpose(struct Matrix *a, struct Matrix **transpose)
 }
 
 
-void multiply_matrix_with_scalar(struct Matrix *a, double scalar) 
+void multiply_matrix_with_scalar(Matrix *a, double scalar) 
 {
 	for(int i = 0; i < a->lines; i++) {
 		for(int j = 0; j < a->columns; j++) {
@@ -74,15 +74,15 @@ void multiply_matrix_with_scalar(struct Matrix *a, double scalar)
 	}
 }
 
-int compute_inverse(struct Matrix *a) 
+int compute_inverse(Matrix *a) 
 {
 	if(a->determinant == 0.0) {
 		return NO_INVERSE;
 	}
 
-	struct Matrix *transpose = create_matrix(a->lines, a->columns);
-	struct Matrix *adjugate = create_matrix(a->lines, a->columns);
-	struct Matrix *current_minor;
+	Matrix *transpose = create_matrix(a->lines, a->columns);
+	Matrix *adjugate = create_matrix(a->lines, a->columns);
+	Matrix *current_minor;
 
 	get_transpose(a, &transpose);	
 	for(int i = 0; i < transpose->lines; i++) {
@@ -102,8 +102,8 @@ int compute_inverse(struct Matrix *a)
 	return NO_ERROR;
 }
 
-int multiply_matrices(struct Matrix *a, struct Matrix *b, 
-					  struct Matrix **result)
+int multiply_matrices(Matrix *a, Matrix *b, 
+					  Matrix **result)
 {
 	if(a->lines != b->columns) {
 		return SIZE_NOT_MATCH;
@@ -130,9 +130,9 @@ int multiply_matrices(struct Matrix *a, struct Matrix *b,
 	return NO_ERROR;
 }
 
-struct Matrix *matrix_pow(struct Matrix *a, int power) 
+Matrix *matrix_pow(Matrix *a, int power) 
 {
-	struct Matrix *result = create_matrix(a->lines, a->columns);
+	Matrix *result = create_matrix(a->lines, a->columns);
 	copy_matrix(a, &result);
 
 	for(int i = 0; i < power-1; i++) {
@@ -142,7 +142,7 @@ struct Matrix *matrix_pow(struct Matrix *a, int power)
 	return result;
 }
 
-int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result)
+int add_matrices(Matrix *a, Matrix *b, Matrix **result)
 {
 	if(a->lines != b->lines && a->columns != b->columns) {
 		return NOT_SAME_SIZE;
@@ -159,7 +159,7 @@ int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result)
 	return NO_ERROR;
 }
 
-int compute_trace(struct Matrix *a)
+int compute_trace(Matrix *a)
 {
 	if(a->columns != a->lines) {
 		return NOT_SQUARE_MATRIX; //error

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /**
- * @struct Matrix 
+ * @Matrix 
  * 
  * @brief The basic data structure used by this library to represent a matrix.
  *
@@ -13,10 +13,10 @@
  * @var Matrix::determinant The determinant of a matrix.
  * @var Matrix::trace The trace of a matrix.
  * @var Matrix::value Pointer to a dynamically alocated 2 dimensional array.
- * @var Matrix::inverse Pointer to a struct Matrix which represents the inverse
+ * @var Matrix::inverse Pointer to a Matrix which represents the inverse
  *      of the current matrix.
  */
-struct Matrix {
+typedef struct Matrix {
 	int lines;
 	int columns;
 
@@ -24,20 +24,20 @@ struct Matrix {
 	double trace;
 			
 	double **value;
-	struct Matrix *inverse;
-};
+	Matrix *inverse;
+} Matrix;
 
 /**
- * @brief Returns a pointer to a struct Matrix with `rows` rows and `columns`
+ * @brief Returns a pointer to a Matrix with `rows` rows and `columns`
  *        columns. Note that the new matrix is empty, but it's elemnts are, by
  *        default 0.
  *
  * @param rows The number of rows of the matrix.
  * @param columns The number of columns of the matrix.
  *
- * @return struct Matrix A pointer to an empty struct Matrix.
+ * @return Matrix A pointer to an empty Matrix.
  */
-struct Matrix *create_matrix(int rows, int columns);
+Matrix *create_matrix(int rows, int columns);
 
 /**
  * @brief Utility function used to read a matrix from the standard input.
@@ -46,7 +46,7 @@ struct Matrix *create_matrix(int rows, int columns);
  *
  * @retrun void It doesn't return anything.
  */
-void read_matrix(struct Matrix *a);
+void read_matrix(Matrix *a);
 
 /**
  * @brief utility function used to print a matrix to the standar output.
@@ -56,7 +56,7 @@ void read_matrix(struct Matrix *a);
  * @return int If the matrix doesn't exists it will return MATRIX_NOT_EXISTS
  *         and NO_ERROR if the matrix was successfully printed.
  */
-int print_matrix(struct Matrix *a);
+int print_matrix(Matrix *a);
 
 /**
  * @brief Returns the minorant of a matrix by a specific row and column.
@@ -65,10 +65,10 @@ int print_matrix(struct Matrix *a);
  * @param line The line That should be elimined when selecting the minorant.
  * @param colum The column that should be elimined when computing the minorant.
  *
- * @return struct Matrix * It returns NULL or a pointer o to a struct Matrix
+ * @return Matrix * It returns NULL or a pointer o to a Matrix
  *         that represents the minorant of the matrix `a`. 
  */
-struct Matrix *get_minor(struct Matrix *a, int line, int column);
+Matrix *get_minor(Matrix *a, int line, int column);
 
 /**
  * @brief Multiplies a matrix `a` with an scalar. Note that the new value of 
@@ -79,7 +79,7 @@ struct Matrix *get_minor(struct Matrix *a, int line, int column);
  *
  * @return void It doesn't return anything.
  */
-void multiply_matrix_with_scalar(struct Matrix *a, double scalar); 
+void multiply_matrix_with_scalar(Matrix *a, double scalar); 
 
 /**
  * @brief Stores the transpose of the matrix `a` in the matrix `transpose`.
@@ -95,7 +95,7 @@ void multiply_matrix_with_scalar(struct Matrix *a, double scalar);
  * @return int CANT_CREATE_MATRIX if the `transpose` can't be created and 
  *         NO_ERROR if all wen ok.
  */
-int get_transpose(struct Matrix *a, struct Matrix **transpose);
+int get_transpose(Matrix *a, Matrix **transpose);
 
 /**
  * @bried Dealocates the memory allocated for a matrix, after calling this
@@ -106,7 +106,7 @@ int get_transpose(struct Matrix *a, struct Matrix **transpose);
  *
  * @return void It doesn't return anything.
  */
-void destroy_matrix(struct Matrix *a); 
+void destroy_matrix(Matrix *a); 
 
 /**
  * @brief Computes the inverse of the matrix `a`. Note that the inverse of
@@ -119,7 +119,7 @@ void destroy_matrix(struct Matrix *a);
  * @return int If the matrix doesn't have an inverse the NO_INVERSE error will
  *         be returned, otherwise NO_ERROR.
  */
-int compute_inverse(struct Matrix *a);
+int compute_inverse(Matrix *a);
 
 /**
  * @brief Returns the determinant of a matrix.
@@ -128,7 +128,7 @@ int compute_inverse(struct Matrix *a);
  *
  * @return double The determinant of matrix `a`.
  */
-double get_determinant(struct Matrix *a);
+double get_determinant(Matrix *a);
 
 /**
  * @brief Multiplies the matrices `a` and `b` and stores their results in the
@@ -143,8 +143,8 @@ double get_determinant(struct Matrix *a);
  *         allocate memory for the matrix `result` and NO_ERROR if the matrices
  *         successully multiplied.
  */
-int multiply_matrices(struct Matrix *a, struct Matrix *b, 
-					  struct Matrix **result);
+int multiply_matrices(Matrix *a, Matrix *b, 
+					  Matrix **result);
 
 
 
@@ -152,14 +152,14 @@ int multiply_matrices(struct Matrix *a, struct Matrix *b,
  * @brief Use this function to add 2 matrices. Note that the result will
  *        be stored in a third matrix.
  *
- * @param a An instance of struct Matrix.
- * @param b An instance of struct Matrix.
- * @param c An instance of struct Matrix.
+ * @param a An instance of Matrix.
+ * @param b An instance of Matrix.
+ * @param c An instance of Matrix.
  *
  * @return int Returns and error status.
  *
  */
-int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result);
+int add_matrices(Matrix *a, Matrix *b, Matrix **result);
 
 /**
  * @brief Copies the contents of the matrix `a` to the matrix `destinaation`.
@@ -171,7 +171,7 @@ int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result);
  *
  * @return void It doesn't return anything.
  */
-void copy_matrix(struct Matrix *a, struct Matrix **destination); 
+void copy_matrix(Matrix *a, Matrix **destination); 
 
 /**
  * @brief raise the matrix `a` to the power `power`.
@@ -179,10 +179,10 @@ void copy_matrix(struct Matrix *a, struct Matrix **destination);
  * @param a The matrix that will be raised to the power `power`.
  * @param power The power that the matrix `a` will be raised to.
  *
- * @return struct Matrix * Returns a matrix that will contain the result of
+ * @return Matrix * Returns a matrix that will contain the result of
  *         raising `a` to `power`.
  */
-struct Matrix *matrix_pow(struct Matrix *a, int power); 
+Matrix *matrix_pow(Matrix *a, int power); 
 
 /**
  * @brief Use this function to compare to matrices. The criteria
@@ -195,6 +195,6 @@ struct Matrix *matrix_pow(struct Matrix *a, int power);
  * @return bool 1 if the matrices are equal and 0 otherwise.
  *
  */
-bool compare_matrices(struct Matrix *a, struct Matrix *b);
+bool compare_matrices(Matrix *a, Matrix *b);
 
 #endif 
