@@ -94,6 +94,18 @@ int get_transpose(struct Matrix *a, struct Matrix **transpose);
  * @return void It doesn't return anything.
  */
 void destroy_matrix(struct Matrix *a); 
+
+/**
+ * @brief Computes the inverse of the matrix `a`. Note that the inverse of
+ *        matrix `a` will be stored in the `inverse` member of `a`. So, after
+ *        calling this function you will access the inverse of `a` like this:
+ *        `a->inverse`.
+ *
+ * @param a The matrix that we want to compute inverse of.
+ *
+ * @return int If the matrix doesn't have an inverse the NO_INVERSE error will
+ *         be returned, otherwise NO_ERROR.
+ */
 int compute_inverse(struct Matrix *a);
 double get_determinant(struct Matrix *a);
 int multiply_matrices(struct Matrix *a, struct Matrix *b, 
