@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "matrix.h"
 #include "error.h"
+#include "helpers.h"
 
 struct Matrix *create_matrix(int lines, int columns) 
 {
