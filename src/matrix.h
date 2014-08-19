@@ -133,6 +133,17 @@ bool isEqual(double a, double b);
  *
  */
 int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result);
+
+/**
+ * @brief Copies the contents of the matrix `a` to the matrix `destinaation`.
+ *
+ * @param a The matrix whose contents we will copy.
+ * @param destination The matrix where the contents of `a` will be stored. Note
+ *        that the functio doesn't allocate memory for `destination` you      
+ *        should create this matrix by yourself.
+ *
+ * @return void It doesn't return anything.
+ */
 void copy_matrix(struct Matrix *a, struct Matrix **destination); 
 struct Matrix *matrix_pow(struct Matrix *a, int power); 
 
