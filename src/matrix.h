@@ -45,6 +45,16 @@ void read_matrix(struct Matrix *a);
  */
 int print_matrix(struct Matrix *a);
 
+/**
+ * @brief Returns the minorant of a matrix by a specific row and column.
+ *
+ * @param a The matrix that we want to compute the minorant of.
+ * @param line The line That should be elimined when selecting the minorant.
+ * @param colum The column that should be elimined when computing the minorant.
+ *
+ * @return struct Matrix * It returns NULL or a pointer o to a struct Matrix
+ *         that represents the minorant of the matrix `a`. 
+ */
 struct Matrix *get_minor(struct Matrix *a, int line, int column);
 void multiply_matrix_with_scalar(struct Matrix *a, double scalar); 
 int get_transpose(struct Matrix *a, struct Matrix **transpose);
