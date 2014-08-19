@@ -67,6 +67,21 @@ struct Matrix *get_minor(struct Matrix *a, int line, int column);
  * @return void It doesn't return anything.
  */
 void multiply_matrix_with_scalar(struct Matrix *a, double scalar); 
+
+/**
+ * @brief Stores the transpose of the matrix `a` in the matrix `transpose`.
+ *
+ * @param a The matrix that the transpose of we will compute.
+ * @param transpose This matrix will hold the value of the matrix `a`. Note
+ *        that you should pass a reference to the matrix transpose. That's
+ *        the way a call to this function would look like:
+ *        `get_transpose(some_matrix, &transpose_of_a)`. Also, keep in mind
+ *        that the matrix `transpose` doesn't need to be initialized, the
+ *        function will do that for you;
+ *
+ * @return int CANT_CREATE_MATRIX if the `transpose` can't be created and 
+ *         NO_ERROR if all wen ok.
+ */
 int get_transpose(struct Matrix *a, struct Matrix **transpose);
 void destroy_matrix(struct Matrix *a); 
 int compute_inverse(struct Matrix *a);
