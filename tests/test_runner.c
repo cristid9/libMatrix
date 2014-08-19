@@ -7,9 +7,9 @@ int tests_run = 0;
 
 static char *test_compute_inverse()
 {
-	struct Matrix *a = create_matrix(3, 3);
+	Matrix *a = create_matrix(3, 3);
 	// The matrix b will contain the value of the a's inverse.
-	struct Matrix *b = create_matrix(3, 3);
+	Matrix *b = create_matrix(3, 3);
 	
 	b->value[0][0] = -1;
 	b->value[0][1] = 0.5;
@@ -48,10 +48,10 @@ static char *test_add_matrices()
 {
 	// We should create 2 empty matrices. If we add them we should get
 	// an empty matrix.
-	struct Matrix *a = create_matrix(2, 2);
-	struct Matrix *b = create_matrix(2, 2);
+	Matrix *a = create_matrix(2, 2);
+	Matrix *b = create_matrix(2, 2);
 	// We will store the result of the adition in a third matrix c.
-	struct Matrix *c = create_matrix(2, 2);
+	Matrix *c = create_matrix(2, 2);
 
 	add_matrices(a, b, &c);
 
@@ -72,8 +72,8 @@ static char *test_compare_matrices()
 
 	// By default newly create marices have all elements
 	// equal to 0. So a and b should be equal.
-	struct Matrix *a = create_matrix(2, 2);
-	struct Matrix *b = create_matrix(2, 2);
+	Matrix *a = create_matrix(2, 2);
+	Matrix *b = create_matrix(2, 2);
 
 	mu_assert("a != b", compare_matrices(a, b) == 1);
 
