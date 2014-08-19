@@ -24,7 +24,7 @@ typedef struct Matrix {
 	double trace;
 			
 	double **value;
-	Matrix *inverse;
+	struct Matrix *inverse;
 } Matrix;
 
 /**

@@ -50,7 +50,7 @@ void destroy_matrix(Matrix *a)
 	}
 }
 
-void copy_matrix(Matrix *a, struct Matrix **destination) 
+void copy_matrix(Matrix *a, Matrix **destination) 
 {
 	for(int i = 0; i < a->lines; i++) {
 		for(int j = 0; j < a->columns; j++) {
@@ -91,7 +91,7 @@ int print_matrix(Matrix *a)
 	return NO_ERROR;
 }
 
-bool compare_matrices(Matrix *a, struct Matrix *b)
+bool compare_matrices(Matrix *a, Matrix *b)
 {
 	// To be equal 2 matrices shouls have the same dimensions
 	if(a->lines != b->lines)
