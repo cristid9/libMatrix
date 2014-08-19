@@ -83,6 +83,16 @@ void multiply_matrix_with_scalar(struct Matrix *a, double scalar);
  *         NO_ERROR if all wen ok.
  */
 int get_transpose(struct Matrix *a, struct Matrix **transpose);
+
+/**
+ * @bried Dealocates the memory allocated for a matrix, after calling this
+ *        function on a matrix all memory used for that matrix will be 
+ *        dealocated, this includes, also, the memory alocate for it's inverse.
+ *
+ * @param a The matrix that should be destroyed.
+ *
+ * @return void It doesn't return anything.
+ */
 void destroy_matrix(struct Matrix *a); 
 int compute_inverse(struct Matrix *a);
 double get_determinant(struct Matrix *a);
