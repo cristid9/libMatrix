@@ -56,6 +56,16 @@ int print_matrix(struct Matrix *a);
  *         that represents the minorant of the matrix `a`. 
  */
 struct Matrix *get_minor(struct Matrix *a, int line, int column);
+
+/**
+ * @brief Multiplies a matrix `a` with an scalar. Note that the new value of 
+ *        the matrix will be the result of this operation.
+ *
+ * @param a The matrix that should be multiplied with an scalar.
+ * @param scalar The scalar that should be multiplied withe the matrix `a`.
+ *
+ * @return void It doesn't return anything.
+ */
 void multiply_matrix_with_scalar(struct Matrix *a, double scalar); 
 int get_transpose(struct Matrix *a, struct Matrix **transpose);
 void destroy_matrix(struct Matrix *a); 
