@@ -3,8 +3,8 @@ CFLAGS = -Wall -std=c99 -fpic
 BINARY_LOCATION = ./bin/libMatrix.so
 HEADER_LOCATION = ./src/matrix.h
 LIB_OPTIONS = -shared -o
-SOURCES = src/utility_functions.c src/error.c src/matrix.c
-OBJECT_FILES = utility_functions.o error.o matrix.o
+SOURCES = src/utility_functions.c src/error.c src/matrix.c src/helpers.c
+OBJECT_FILES = utility_functions.o error.o matrix.o helpers.o
 LIBFLAGS = -lm -c
 INSTALLED_LIB_LOCATION = /usr/lib
 INSTALLED_HEADER_LOCATION = /usr/include
@@ -38,6 +38,12 @@ check:
 	$(CC) $(TEST_SOURCES) $(TEST_FLAGS) $(TEST_NAME) $(TEST_LIBS)	
 	@echo --------------------------------------------------------;
 	@./$(TEST_NAME)
+
+check-debug:
+	$(CC) -g $(TEST_SOURCES) $(TEST_FLAGS) $(TEST_NAME) $(TEST_LIBS)	
+	@echo --------------------------------------------------------;
+	@./$(TEST_NAME)
+
 
 html:
 

@@ -1,6 +1,8 @@
 #ifndef MATRICI_H
 #define MATRICI_H
 
+#include <stdbool.h>
+
 struct Matrix {
 	int lines;
 	int columns;
@@ -24,6 +26,7 @@ double get_determinant(struct Matrix *a);
 int multiply_matrices(struct Matrix *a, struct Matrix *b, 
 					  struct Matrix **result);
 
+bool isEqual(double a, double b);
 /**
  * @brief Use this function to add 2 matrices. Note that the result will
  *        be stored in a third matrix.
@@ -47,9 +50,9 @@ struct Matrix *matrix_pow(struct Matrix *a, int power);
  * @param a An instance of struct matrix.
  * @param b An instance of sruct martix.
  *
- * @return int 1 if the matrices are equal and 0 otherwise.
+ * @return bool 1 if the matrices are equal and 0 otherwise.
  *
  */
-int compare_matrices(struct Matrix *a, struct Matrix *b);
+bool compare_matrices(struct Matrix *a, struct Matrix *b);
 
 #endif 

@@ -28,18 +28,20 @@ struct Matrix *get_minor(struct Matrix *a, int line, int columns)
 	return minor;
 }
 
-double get_determinant(struct Matrix *a)                                            
+double get_determinant(struct Matrix *a)                                        
 {                                                                              
 	double det;
+	struct Matrix *m;
+
 	if (a->lines == 1 && a->columns == 1) {                                     
 		return a->value[0][0];              
 	}                                    
 	else {                                                                      
 	  det = 0;                                                          
 	  for (int i = 0; i < a->columns; i++) {                                  
-	      struct Matrix *m = get_minor(a, 0, i);                              
-	      det += (a->value[0][i]) * (pow(-1, 2 + i)) * (get_determinant(m));      
-	      free(m);                                                            
+	      m = get_minor(a, 0, i);                              
+	      det += (a->value[0][i]) * (pow(-1, 2 + i)) * (get_determinant(m));    
+	      destroy_matrix(m);                                                    
 	  }                                                                      
 	  return det;                                                            
 	}                                                                          
@@ -78,20 +80,23 @@ int compute_inverse(struct Matrix *a)
 		return NO_INVERSE;
 	}
 
+	struct Matrix *transpose = create_matrix(a->lines, a->columns);
 	struct Matrix *adjugate = create_matrix(a->lines, a->columns);
 	struct Matrix *current_minor;
 
-	for(int i = 0; i < a->lines; i++) {
-		for(int j = 0; j < a->columns; j++) {
-			current_minor         = get_minor(a, i, j);
-			adjugate->value[i][j] = get_determinant(current_minor);
+	get_transpose(a, &transpose);	
+	for(int i = 0; i < transpose->lines; i++) {
+		for(int j = 0; j < transpose->columns; j++) {
+			current_minor         = get_minor(transpose, i, j);
+			adjugate->value[i][j] = pow(-1.0, (double)i + (double)j) *
+										get_determinant(current_minor);
 			
 			destroy_matrix(current_minor);
 		}
 	}
+	destroy_matrix(transpose);
 	
-	get_transpose(adjugate, &a->inverse);
-	destroy_matrix(adjugate);
+	a->inverse = adjugate;
 	multiply_matrix_with_scalar(a->inverse, 1/a->determinant);
 	
 	return NO_ERROR;

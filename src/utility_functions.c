@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "matrix.h"
 #include "error.h"
 
@@ -89,7 +90,7 @@ int print_matrix(struct Matrix *a)
 	return NO_ERROR;
 }
 
-int compare_matrices(struct Matrix *a, struct Matrix *b)
+bool compare_matrices(struct Matrix *a, struct Matrix *b)
 {
 	// To be equal 2 matrices shouls have the same dimensions
 	if(a->lines != b->lines)
@@ -101,10 +102,10 @@ int compare_matrices(struct Matrix *a, struct Matrix *b)
 	// they have the same values
 	for(int i = 0; i < a->lines; i++) {
 		for(int j = 0; j < a->columns; j++) {
-			if(a->value[i][j] != b->value[i][j])
-				return 0;
+			if(!isEqual(a->value[i][j], b->value[i][j]))
+				return false;
 		}
 	}
-	return 1;
+	return true;
 }
 

@@ -1,8 +1,48 @@
 #include <stdio.h>
 #include "minunit.h"
 #include "../src/matrix.h"
+#include "../src/error.h"
 
 int tests_run = 0;
+
+static char *test_compute_inverse()
+{
+	struct Matrix *a = create_matrix(3, 3);
+	// The matrix b will contain the value of the a's inverse.
+	struct Matrix *b = create_matrix(3, 3);
+	
+	b->value[0][0] = -1;
+	b->value[0][1] = 0.5;
+	b->value[0][2] = 0;
+	b->value[1][0] = 0.5;
+	b->value[1][1] = -1;
+	b->value[1][2] = 0.5;
+	b->value[2][0] = 0.3333333;
+	b->value[2][1] = 0.5;
+	b->value[2][2] = -0.333333;
+
+	for(int i = 0, k = 1; i < 3; i++) {
+		for(int j = 0; j < 3; j++, k++) {
+			if(k != 5) {
+				a->value[i][j] = k;
+			}
+			else {
+				// The matrix that has all the values from 1 to 9 in spiral
+				// has no inverse, so I replaced the 5 with an four.
+				a->value[i][j] = 4;
+			}
+		}
+	}
+	a->determinant = get_determinant(a);
+	compute_inverse(a);
+	mu_assert("The invers is not equal to the matrix b", compare_matrices(
+			  a->inverse, b));
+		
+	destroy_matrix(a);
+	destroy_matrix(b);
+	
+	return 0;
+}
 
 static char *test_add_matrices()
 {
@@ -53,6 +93,7 @@ static char *test_compare_matrices()
 static char *all_tests() {
 	mu_run_test(test_compare_matrices); 
 	mu_run_test(test_add_matrices);
+	mu_run_test(test_compute_inverse);
 	return 0;
 }
 
