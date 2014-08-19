@@ -159,6 +159,16 @@ int add_matrices(struct Matrix *a, struct Matrix *b, struct Matrix **result);
  * @return void It doesn't return anything.
  */
 void copy_matrix(struct Matrix *a, struct Matrix **destination); 
+
+/**
+ * @brief raise the matrix `a` to the power `power`.
+ *
+ * @param a The matrix that will be raised to the power `power`.
+ * @param power The power that the matrix `a` will be raised to.
+ *
+ * @return struct Matrix * Returns a matrix that will contain the result of
+ *         raising `a` to `power`.
+ */
 struct Matrix *matrix_pow(struct Matrix *a, int power); 
 
 /**
