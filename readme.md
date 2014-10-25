@@ -1,7 +1,7 @@
 Summary
 -------
-This file contains a brief description of the main function provided by the 
-library. More details about these function scan be found here 
+This file contains a brief description of the main functions provided by the 
+library. More details about these functions can be found here 
 http://cristid9.github.io/libMatrix/files.html.
 
 This is is a minimalist matrix library which provides support for
